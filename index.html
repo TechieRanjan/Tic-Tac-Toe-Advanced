@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png">
+  <link rel="icon" type="images/png" sizes="32x32" href="/images/icon.png">
+  <meta property="og:image" content="/images/icon.png">
+  <link rel="manifest" href="manifest.json" /> 
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="tic.css">
+    <title>Tic-Tac-Toe</title>
+  </head>
+  <body>
+    <dialog id="dialog3">
+      <div class="h2">
+        <div class="div">
+          <h3>Finding Player </h3>
+      
+        </div>
+        <i onclick="document.querySelector(`#dialog3`).close()" class="material-icons">close</i>
+      </div>
+      <div class="found">
+        <i class="material-icons">person</i>
+        <span data-onpl><i class="fa fa-circle-o-notch fa-spin"></i></span>
+      </div>
+    </dialog>
+    <dialog id="dialog">
+      <div class="h2">
+        <h3>Select Player</h3>
+        <i onclick="closeModals()" class="material-icons">close</i>
+      </div>
+      <div class="select">
+        <div class="wrap">
+          <input class="player" id="friend" name="tic" type="radio" checked />
+          <label for="friend"
+            >With Friend
+            <div class="bvb">
+              <i class="material-icons">person</i>
+              <i class="material-icons">bolt</i>
+             
+              <i class="material-icons">person</i>
+            </div>
+          </label>
+        </div>
+        <div class="wrap">
+          <input class="player" id="bot" name="tic" type="radio" />
+          <label for="bot"
+            >With smart Bot
+            <div class="bvb">
+              <i class="material-icons">person</i>
+              <i class="material-icons">bolt</i>
+             
+              <i class="material-icons">smart_toy</i>
+            </div>
+          </label>
+        </div>
+        <div class="wrap">
+          <input class="player" id="rush" name="tic" type="radio" />
+          <label for="rush"
+            >Bot vs Bot
+        <div class="bvb">
+          <i class="material-icons">smart_toy</i>
+          <i class="material-icons">bolt</i>
+         
+          <i class="material-icons">smart_toy</i>
+        </div>
+          </label>
+        </div>
+        <div class="wrap">
+          <input  class="player" id="online" name="tic" type="radio" />
+          <label  for="online"
+            >Online 
+            <i class="material-icons">language</i>
+          </label>
+        </div>
+        <button onclick="startPlay()" id="play">Play</button>
+      </div>
+    </dialog>
+    <header>
+      <h2>
+        Tic-Tac-Toe
+        <span class="tooltip" titles="This is in Beta version">Beta</span>
+      </h2>
+      <i
+        id="more_vert"
+        title="open select player box"
+        onclick="showOptions()"
+        class="material-icons"
+        >more_vert</i
+      >
+      <div class="options">
+        <div onclick="showModals()" class="opt">
+          <i class="material-icons">sports_esports</i>
+       Play Mode
+        </div>
+        <div style="color: orangered;" onclick="Reset()" class="opt">
+          <i class="material-icons">restart_alt</i>
+          Restart
+        </div>
+        <div onclick="MakeSuggestion()" style="border-top: 1px solid #ffffff;" class="opt">
+     <i id="sug" class="material-icons">check_box_outline_blank</i>
+          Suggestion
+        </div>
+        <div onclick="fullscreen()" class="opt">
+     <i class="material-icons">fullscreen</i>
+          Fullscreen
+        </div>
+        <div id="ana"  onclick="openAnalytics()" class="opt avil">
+     <i class="material-icons">analytics</i>
+     Analytics
+        </div>
+        <div  id="music"  onclick="stopMusic()" class="opt avil">
+     <i class="material-icons">stop_circle</i>
+     Stop Music
+        </div>
+        <div  style="border-top: 1px solid #b6b6b6;"  onclick="showRanjan()" class="opt avil">
+          <i class="material-icons">code</i>
+          Developer
+             </div>
+        <div onclick="feedback()"  class="opt">
+          <i class="material-icons">feedback</i>
+          Feedback
+        </div>
+      
+      </div>
+
+   
+
+</div>
+      </div>
+    </header>
+    <div class="player_indicater">
+      <span contenteditable data-turn title="Player X Turn">X</span>
+      <span contenteditable data-turn title="Player O Turn">O</span>
+      <div class="bar"></div>
+    </div>
+    <main class="container">
+      <div data-cell="1" class="box"></div>
+      <div data-cell="2" class="box"></div>
+      <div data-cell="3" class="box"></div>
+      <div data-cell="4" class="box"></div>
+      <div data-cell="5" class="box"></div>
+      <div data-cell="6" class="box"></div>
+      <div data-cell="7" class="box"></div>
+      <div data-cell="8" class="box"></div>
+      <div data-cell="9" class="box"></div>
+    </main>
+
+<div data-sug-box class="suggestionsBox">
+  <i class="material-icons">auto_awesome</i>
+  <span data-sug>I'm assistant</span>
+
+
+
+  <i style="cursor: pointer;" id="showCheckBox" class="material-icons">navigate_next</i>
+  <div id="highlightInput">
+  <input id="ff" onchange="CheckHighlight(this)" type="checkbox">
+<label for="ff">Highlight Box</label>
+  </div>
+
+</div>
+    <div class="winner_box">
+      <h1 data-name></h1>
+      <button onclick="playAgains()" id="playAgain">
+        <i class="material-icons">restart_alt</i>
+      </button>
+    </div>
+    <dialog id="dialog2">
+      <div class="h2">
+        <h3>Analytics</h3>
+        <i onclick="document.getElementById(`dialog2`).close()" class="material-icons">close</i>
+      </div>
+
+      <canvas id="myChart"></canvas>
+
+    </dialog>
+
+<div hidden class="emoji">
+ <p>Send emoji</p>
+  <span onclick="sendEmoji(this)" >🤣</span>
+  <span onclick="sendEmoji(this)" >❤️</span>
+  <span onclick="sendEmoji(this)" >😎</span>
+  <span onclick="sendEmoji(this)" >🤔</span>
+  <span onclick="sendEmoji(this)" >🥲</span>
+</div>
+
+  
+    
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://tic-tac-toe-advanced.ranjankashyap1.repl.co/socket.io/socket.io.js"></script>
+  <script src="tic.js"></script>
+  </body>
+</html>
